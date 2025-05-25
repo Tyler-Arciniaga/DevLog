@@ -1,6 +1,5 @@
 /*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-
+Copyright © 2025 Tyler Arciniaga tyarciniaga@gmail.com
 */
 package cmd
 
@@ -10,18 +9,21 @@ import (
 	"github.com/spf13/cobra"
 )
 
-
-
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "DevLog",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
+	Use:   "devlog",
+	Short: "A lightweight CLI tool to track development notes and debugging progress",
+	Long: `DevLog CLI is a lightweight tool for managing project notes, debug checklists, 
+and development logs—all from the terminal.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+Use it to:
+- Add timestamped notes about what you've worked on
+- Track and check off debug tasks
+- Initialize a .devlog folder for storing logs in JSON or YAML
+- (Optional) Summarize Git commits to review your progress
+
+Everything is stored locally, version-controllable, 
+and designed to fit smoothly into your development workflow.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
@@ -47,5 +49,3 @@ func init() {
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
-
-
