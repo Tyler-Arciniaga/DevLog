@@ -14,7 +14,7 @@ func checkErr(e error) {
 	}
 }
 
-func AddDebug(title string, tag string) {
+func DebugAdd(title string, tag string) {
 	currLog, logPath, lastID := GetCurrDebugLog()
 
 	//create a new debug task object
@@ -39,6 +39,30 @@ func AddDebug(title string, tag string) {
 
 	fmt.Println("New debug task added to your debug log!")
 
+}
+
+func DebugList() {
+	currLog, _, _ := GetCurrDebugLog()
+	fmt.Print("Debug Tracker 🐞\n")
+	fmt.Printf("'Just go out a kill a few beasts...' - Gehrman\n\n")
+
+	fmt.Println("ID   	Status  Task")
+	fmt.Println("---  	------  ------------------")
+
+	for _, task := range currLog {
+		FormatTask(task)
+	}
+}
+
+func FormatTask(task data.DebugData) {
+	var status string
+	if !task.Caught {
+		status = "❌"
+	} else {
+		status = "✅"
+	}
+
+	fmt.Printf(" %d  	 [%s]	%s\n", task.Id, status, task.Title)
 }
 
 func GetCurrDebugLog() ([]data.DebugData, string, int) {

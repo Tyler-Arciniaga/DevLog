@@ -1,9 +1,21 @@
 [
   {
+   "id": 4,
+   "title": "need to refactor code because infinite recursion is happening uh-oh",
+   "tag": "",
+   "caught": false
+  },
+  {
+   "id": 3,
+   "title": "task3",
+   "tag": "tag3",
+   "caught": false
+  },
+  {
    "id": 2,
    "title": "task2",
    "tag": "tag2",
-   "caught": false
+   "caught": true
   },
   {
    "id": 1,
