@@ -21,9 +21,9 @@ var noteAddCommand = &cobra.Command{
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 2 {
-			notecmd.Note(args[0], args[1])
+			notecmd.NoteAdd(args[0], args[1])
 		} else {
-			notecmd.Note(args[0], "")
+			notecmd.NoteAdd(args[0], "")
 		}
 	},
 }
