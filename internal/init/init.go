@@ -36,5 +36,5 @@ func Init() {
 func CreateNewFile(name string) {
 	path := "./.devlog/" + name
 	checkExists("./devlog/debug.json")
-	checkErr(os.WriteFile(path, []byte(""), 0644))
+	checkErr(os.WriteFile(path, []byte("[]"), 0644))
 }

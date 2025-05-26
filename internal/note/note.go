@@ -24,18 +24,8 @@ func Note(arg0 string, arg1 string) {
 }
 
 func NoteAdd(title string, tag string) {
-	//read and store json content from log.json
-	dir, _ := os.Getwd()
-	logPath := dir + "/.devlog/log.json"
 
-	dat, e := os.ReadFile(logPath)
-	checkErr(e)
-
-	//unmarshal json into Go styled slice
-	var currentLog []data.NoteData
-	e = json.Unmarshal(dat, &currentLog)
-	checkErr(e)
-
+	currentLog, logPath := GetCurrLog()
 	//create new note from command arguements
 	newNote := &data.NoteData{
 		Timestamp: int(time.Now().Unix()),
@@ -53,6 +43,43 @@ func NoteAdd(title string, tag string) {
 	packagedNotes, e := json.MarshalIndent(updatedLog, " ", " ")
 	checkErr(e)
 
+	//write back into log.json file (ovewrites previous log with newly updated log)
 	e = os.WriteFile(logPath, packagedNotes, 0644)
 	checkErr(e)
+	fmt.Println("Note added to your log!")
+}
+
+func NoteList() {
+	currentLog, _ := GetCurrLog()
+
+	for _, note := range currentLog {
+		FormatNote(note)
+	}
+
+}
+
+func FormatNote(note data.NoteData) {
+	//convert back to local time layout form Unix epoch time
+	nonUnixTime := time.Unix(int64(note.Timestamp), 0)
+
+	//print note information
+	fmt.Printf("[%s]\n", nonUnixTime.String()[:19])
+	fmt.Printf("	Tag: 	%s\n", note.Tag)
+	fmt.Printf("	Title:	%s\n\n", note.Title)
+}
+
+func GetCurrLog() ([]data.NoteData, string) {
+	//read and store json content from log.json
+	dir, _ := os.Getwd()
+	logPath := dir + "/.devlog/log.json"
+
+	dat, e := os.ReadFile(logPath)
+	checkErr(e)
+
+	//unmarshal json into Go styled slice
+	var currentLog []data.NoteData
+	e = json.Unmarshal(dat, &currentLog)
+	checkErr(e)
+
+	return currentLog, logPath
 }

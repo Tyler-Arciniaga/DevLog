@@ -8,6 +8,7 @@ import (
 func init() {
 	rootCmd.AddCommand(noteCommand)
 	noteCommand.AddCommand(noteAddCommand)
+	noteCommand.AddCommand(noteListCommand)
 }
 
 var noteCommand = &cobra.Command{
@@ -25,5 +26,14 @@ var noteAddCommand = &cobra.Command{
 		} else {
 			notecmd.NoteAdd(args[0], "")
 		}
+	},
+}
+
+var noteListCommand = &cobra.Command{
+	Use:   "list",
+	Short: "view all your previous notes",
+	Args:  cobra.NoArgs,
+	Run: func(cmd *cobra.Command, args []string) {
+		notecmd.NoteList()
 	},
 }
