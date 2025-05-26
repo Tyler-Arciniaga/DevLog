@@ -12,6 +12,7 @@ func init() {
 var initCommand = &cobra.Command{
 	Use:   "init",
 	Short: "Initialize devlog directory",
+	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		initcmd.Init()
 	},

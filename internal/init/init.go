@@ -28,11 +28,9 @@ func Init() {
 
 	fmt.Println("Creating log.json...")
 	CreateNewFile("log.json")
-	//checkExists("./devlog/log.json")
 
 	fmt.Println("Creating debug.json...")
 	CreateNewFile("debug.json")
-	//checkExists("./devlog/debug.json")
 }
 
 func CreateNewFile(name string) {
