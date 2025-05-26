@@ -15,5 +15,5 @@ type DebugData struct {
 	Id     int    `json:"id"`
 	Title  string `json:"title"`
 	Tag    string `json:"tag"`
-	Status bool   `json:"status"`
+	Caught bool   `json:"caught"`
 }
