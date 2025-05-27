@@ -1,5 +1,7 @@
 package data
 
+import "time"
+
 type DevLogData struct {
 	Notes     []NoteData
 	DebugList []DebugData
@@ -16,4 +18,11 @@ type DebugData struct {
 	Title  string `json:"title"`
 	Tag    string `json:"tag"`
 	Caught bool   `json:"caught"`
+}
+
+type ExportData struct {
+	Date      time.Time
+	Author    string
+	Notes     []NoteData
+	DebugList []DebugData
 }

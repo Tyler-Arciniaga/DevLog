@@ -66,7 +66,10 @@ func DebugList(tag string) {
 }
 
 func DebugSquash(bugID string) {
+	//extract debug log from debug.json
 	currLog, logPath, _ := GetCurrDebugLog()
+
+	//locate index of bug with specified id
 	var indexOfBug int
 	for i, task := range currLog {
 		if strconv.Itoa(task.Id) == bugID {
@@ -75,9 +78,12 @@ func DebugSquash(bugID string) {
 		}
 	}
 	currLog[indexOfBug].Caught = true
+
+	//repackage debug log into json
 	packagedLog, e := json.MarshalIndent(currLog, " ", " ")
 	checkErr(e)
 
+	//overwrite updated debug log into debug.json file
 	e = os.WriteFile(logPath, packagedLog, 0644)
 	checkErr(e)
 
