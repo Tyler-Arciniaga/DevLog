@@ -46,7 +46,7 @@ func DebugAdd(title string, tag string) {
 func DebugList(tag string) {
 	currLog, _, _ := GetCurrDebugLog()
 	fmt.Print("Debug Tracker 🐞\n")
-	fmt.Printf("'Just go out a kill a few beasts...' - Gehrman\n\n")
+	fmt.Printf("'Just go out and kill a few beasts...' - Gehrman\n\n")
 
 	fmt.Println("ID   	Status  Tag		Task")
 	fmt.Println("---  	------  ----	------------------")
