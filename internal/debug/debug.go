@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strconv"
 
 	data "github.com/Tyler-Arciniaga/DevLog/internal/data"
 )
@@ -52,6 +53,26 @@ func DebugList() {
 	for _, task := range currLog {
 		FormatTask(task)
 	}
+}
+
+func DebugSquash(bugID string) {
+	currLog, logPath, _ := GetCurrDebugLog()
+	var indexOfBug int
+	for i, task := range currLog {
+		if strconv.Itoa(task.Id) == bugID {
+			indexOfBug = i
+			break
+		}
+	}
+	currLog[indexOfBug].Caught = true
+	packagedLog, e := json.MarshalIndent(currLog, " ", " ")
+	checkErr(e)
+
+	e = os.WriteFile(logPath, packagedLog, 0644)
+	checkErr(e)
+
+	fmt.Printf("Bug %s squashed!\n", bugID)
+
 }
 
 func FormatTask(task data.DebugData) {

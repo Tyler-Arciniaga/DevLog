@@ -1,15 +1,21 @@
 [
   {
+   "id": 5,
+   "title": "go to office hours",
+   "tag": "",
+   "caught": false
+  },
+  {
    "id": 4,
    "title": "need to refactor code because infinite recursion is happening uh-oh",
    "tag": "",
-   "caught": false
+   "caught": true
   },
   {
    "id": 3,
    "title": "task3",
    "tag": "tag3",
-   "caught": false
+   "caught": true
   },
   {
    "id": 2,

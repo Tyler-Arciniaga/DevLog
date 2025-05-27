@@ -9,6 +9,7 @@ func init() {
 	rootCmd.AddCommand(debugCommand)
 	debugCommand.AddCommand(debugAddCommand)
 	debugCommand.AddCommand(debugListCommand)
+	debugCommand.AddCommand(debugSquashCommand)
 }
 
 var debugCommand = &cobra.Command{
@@ -17,7 +18,7 @@ var debugCommand = &cobra.Command{
 }
 
 var debugAddCommand = &cobra.Command{
-	Use:   "add [debug note here]",
+	Use:   "add [debug note]",
 	Short: "add a new debug task",
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -35,5 +36,14 @@ var debugListCommand = &cobra.Command{
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		debugcmd.DebugList()
+	},
+}
+
+var debugSquashCommand = &cobra.Command{
+	Use:   "squash [bug id]",
+	Short: "mark a debug task as completed",
+	Args:  cobra.ExactArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		debugcmd.DebugSquash(args[0])
 	},
 }
