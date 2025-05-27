@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strings"
 	"time"
 
 	data "github.com/Tyler-Arciniaga/DevLog/internal/data"
@@ -49,11 +50,19 @@ func NoteAdd(title string, tag string) {
 	fmt.Println("Note added to your log!")
 }
 
-func NoteList() {
+func NoteList(tag string) {
 	currentLog, _ := GetCurrLog()
 
-	for _, note := range currentLog {
-		FormatNote(note)
+	if tag == "" {
+		for _, note := range currentLog {
+			FormatNote(note)
+		}
+	} else {
+		for _, note := range currentLog {
+			if strings.EqualFold(tag, note.Tag) {
+				FormatNote(note)
+			}
+		}
 	}
 
 }

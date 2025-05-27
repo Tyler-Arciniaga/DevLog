@@ -5,10 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var Tag string
+
 func init() {
 	rootCmd.AddCommand(noteCommand)
 	noteCommand.AddCommand(noteAddCommand)
 	noteCommand.AddCommand(noteListCommand)
+	noteListCommand.Flags().StringVarP(&Tag, "tag", "t", "", "search for notes with a specific tag")
 }
 
 var noteCommand = &cobra.Command{
@@ -30,10 +33,10 @@ var noteAddCommand = &cobra.Command{
 }
 
 var noteListCommand = &cobra.Command{
-	Use:   "list",
+	Use:   "list [flags]",
 	Short: "view all your previous notes",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		notecmd.NoteList()
+		notecmd.NoteList(Tag)
 	},
 }

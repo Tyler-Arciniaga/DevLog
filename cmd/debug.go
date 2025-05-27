@@ -9,6 +9,7 @@ func init() {
 	rootCmd.AddCommand(debugCommand)
 	debugCommand.AddCommand(debugAddCommand)
 	debugCommand.AddCommand(debugListCommand)
+	debugListCommand.Flags().StringVarP(&Tag, "tag", "t", "", "search for debug task with a specific tag")
 	debugCommand.AddCommand(debugSquashCommand)
 }
 
@@ -35,7 +36,7 @@ var debugListCommand = &cobra.Command{
 	Short: "view all current debug tasks",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		debugcmd.DebugList()
+		debugcmd.DebugList(Tag)
 	},
 }
 

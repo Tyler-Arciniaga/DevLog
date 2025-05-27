@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 
 	data "github.com/Tyler-Arciniaga/DevLog/internal/data"
 )
@@ -42,17 +43,26 @@ func DebugAdd(title string, tag string) {
 
 }
 
-func DebugList() {
+func DebugList(tag string) {
 	currLog, _, _ := GetCurrDebugLog()
 	fmt.Print("Debug Tracker 🐞\n")
 	fmt.Printf("'Just go out a kill a few beasts...' - Gehrman\n\n")
 
-	fmt.Println("ID   	Status  Task")
-	fmt.Println("---  	------  ------------------")
+	fmt.Println("ID   	Status  Tag		Task")
+	fmt.Println("---  	------  ----	------------------")
 
-	for _, task := range currLog {
-		FormatTask(task)
+	if tag == "" {
+		for _, task := range currLog {
+			FormatTask(task)
+		}
+	} else {
+		for _, task := range currLog {
+			if strings.EqualFold(tag, task.Tag) {
+				FormatTask(task)
+			}
+		}
 	}
+
 }
 
 func DebugSquash(bugID string) {
@@ -82,8 +92,14 @@ func FormatTask(task data.DebugData) {
 	} else {
 		status = "✅"
 	}
+	var tag string
+	if task.Tag == "" {
+		tag = " NA"
+	} else {
+		tag = task.Tag
+	}
 
-	fmt.Printf(" %d  	 [%s]	%s\n", task.Id, status, task.Title)
+	fmt.Printf(" %d  	 [%s]	%s	%s\n", task.Id, status, tag, task.Title)
 }
 
 func GetCurrDebugLog() ([]data.DebugData, string, int) {
