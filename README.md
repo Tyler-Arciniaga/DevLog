@@ -52,7 +52,7 @@ devlog export html
 devlog export md --since "2025-05-28"
 ```
 - Export your devlog notes into either markdown or html format.
-- Can specify a state date to only export notes and debug tasks that were created after specified date.
+- Can specify a start date to only export notes and debug tasks that were created after specified date.
 
 ## ⚙️ Installation
 ### Option 1: Go Install
