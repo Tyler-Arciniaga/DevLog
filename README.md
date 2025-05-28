@@ -46,6 +46,14 @@ devlog debug squash 2
 - Manage debug tasks you’ve found during debugging.
 - Mark bugs as complete (✅) or incomplete (❌) by ID.
 
+### 💾 Export DevLog
+```
+devlog export html
+devlog export md --since "2025-05-28"
+```
+- Export your devlog notes into either markdown or html format.
+- Can specify a state date to only export notes and debug tasks that were created after specified date.
+
 ## ⚙️ Installation
 ### Option 1: Go Install
 ```
@@ -54,7 +62,7 @@ go install github.com/Tyler-Arciniaga/devlog@latest
 - Make sure $GOPATH/bin is in your PATH.
 ### Option 2: Manual Build
 ```
-git clone https://github.com/yourusername/devlog.git
+git clone https://github.com/Tyler-Arciniaga/devlog.git
 cd devlog
 make install
 ```
@@ -67,9 +75,9 @@ make install
 ## 🧪 Roadmap & Enhancements
 | Feature                      | Status     |
 | ---------------------------- | ---------- |
-| Core CLI (init, note, debug) | ✅ Done     |
+| Core CLI (init, note, debug) | ✅ Done    |
 | Git commit summary           | 🧠 Planned |
-| Markdown export              | 📝 Planned |
+| Markdown/HTML export              | ✅ Done    |
 | Config file support          | ⚙️ Planned |
 | Unit tests                   | 🧪 Planned |
 | Homebrew distribution        | 🍺 Planned |
