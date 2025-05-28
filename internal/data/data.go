@@ -1,7 +1,5 @@
 package data
 
-import "time"
-
 type DevLogData struct {
 	Notes     []NoteData
 	DebugList []DebugData
@@ -21,7 +19,7 @@ type DebugData struct {
 }
 
 type ExportData struct {
-	Date      time.Time
+	StartDate int64
 	Author    string
 	Notes     []NoteData
 	DebugList []DebugData
